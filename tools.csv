@@ -1,0 +1,31 @@
+name,category,description,pricing_model,website_url
+GitHub Copilot,Code Generation,AI pair programmer inside VS Code and GitHub. Real-time code suggestions powered by OpenAI Codex.,Paid ($10-20/month),https://github.com/copilot
+Cursor,Code Generation,VS Code fork built for AI. Understands your entire codebase. Best for refactoring and new features.,Freemium,https://cursor.sh
+Codeium,Code Generation,Free AI code completion. Supports 70+ languages. Fast and no data collection.,Free,https://codeium.com
+Claude (API),Code Generation,Anthropic's Claude API. Excellent for complex logic and reasoning in code.,Paid,https://anthropic.com
+ChatGPT,Code Generation,OpenAI's ChatGPT. Versatile for debugging and learning new patterns.,Freemium,https://openai.com
+Tabnine,Code Generation,Local code completion. Privacy-focused. Works offline.,Free / Paid,https://tabnine.com
+Codium PR Agent,Code Review,AI reviews your pull requests. Catches bugs and suggests improvements automatically.,Freemium,https://www.codium.ai
+DeepSource,Code Review,Automated code analysis. Finds bugs and style issues in CI/CD.,Free / Paid,https://deepsource.io
+Snyk,Code Quality,Finds and fixes security vulnerabilities in dependencies. Essential for production code.,Free / Paid,https://snyk.io
+SonarQube,Code Quality,Static analysis for code quality. Integrates with CI/CD pipelines.,Free / Paid,https://www.sonarqube.org
+GitLab Duo,Code Review,Built into GitLab. Automated code review and suggestions.,Included,https://gitlab.com
+Mintlify,Documentation,Turn your code comments into beautiful documentation. Auto-generates and deploys.,Free / Paid,https://mintlify.com
+Swimm,Documentation,Interactive documentation that stays in sync with code. Great for onboarding.,Free / Paid,https://swimm.io
+Stepsize,Documentation,Capture and organize technical debt. Keep docs updated as code evolves.,Free / Paid,https://stepsize.com
+ReadTheDocs,Documentation,Host your documentation for free. Standard in open source.,Free,https://readthedocs.org
+Testim,Testing,AI-powered test automation. Record tests visually no coding required.,Paid,https://www.testim.io
+Keploy,Testing,Record and replay API tests automatically. Integrates with CI/CD.,Free / Paid,https://keploy.io
+Launchpad,Testing,AI-powered UI testing. Find visual bugs and regressions automatically.,Paid,https://launchpad.com
+Mabl,Testing,AI test automation for web apps. Self-healing tests that adapt.,Paid,https://mabl.com
+Railway,DevOps,Deploy from Git instantly. Perfect for side projects and startups.,Free / Paid,https://railway.app
+Render,DevOps,Simple deployment platform. Free tier for learning. Better UX than Heroku.,Free / Paid,https://render.com
+Vercel,DevOps,Deployment platform optimized for Next.js. Instant deployments from GitHub.,Free / Paid,https://vercel.com
+Fly.io,DevOps,Run full-stack apps globally. Great for real-time features.,Free / Paid,https://fly.io
+Supabase,Backend,Open source Firebase alternative. PostgreSQL + Auth + Storage + Real-time.,Free / Paid,https://supabase.com
+Warp,Terminal,AI-powered terminal. Write commands in plain English.,Free / Paid,https://www.warp.dev
+Pieces.app,Productivity,Save and organize code snippets. Integrates with your IDE.,Free / Paid,https://pieces.app
+Raycast,Productivity,Spotlight replacement for Mac. Search files and tools from one place.,Free / Paid,https://raycast.com
+Fig,Productivity,Smart autocomplete for terminal commands. Faster than man pages.,Free / Paid,https://fig.io
+GitHub Copilot CLI,Productivity,Ask Copilot in your terminal. Explains commands and generates scripts.,Paid,https://github.com/copilot
+CommandDash,Productivity,Organize your terminal commands. Never forget a command again.,Free,https://commanddash.io
