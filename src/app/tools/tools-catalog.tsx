@@ -41,6 +41,7 @@ export default function ToolsCatalog({
   // Extract unique categories for filter tabs in the requested order
   const categories = useMemo(() => {
     const predefinedOrder = [
+      'All',
       'Content Creating',
       'Video Editing',
       'Photo Editing',
@@ -68,9 +69,6 @@ export default function ToolsCatalog({
         orderedCats.push(cat);
       }
     });
-
-    // Add 'All' at the end as requested
-    orderedCats.push('All');
 
     return orderedCats;
   }, [initialTools]);
