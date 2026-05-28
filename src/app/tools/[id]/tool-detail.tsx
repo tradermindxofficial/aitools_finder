@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Star, Bookmark, ExternalLink, Lock, CheckCircle, ShieldAlert, Sparkles, Check } from 'lucide-react';
 import { createClient } from '@/utils/supabase/client';
+import { rateTool } from '@/app/tools/actions';
 
 interface Tool {
   id: string;
@@ -87,26 +88,19 @@ export default function ToolDetail({
 
     setLoadingRate(true);
     setRatingMessage('');
-    const supabase = createClient();
     try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return;
-
-      const { error } = await supabase
-        .from('ratings')
-        .upsert(
-          { user_id: user.id, tool_id: tool.id, rating },
-          { onConflict: 'user_id,tool_id' }
-        );
-
-      if (error) throw error;
-      
+      await rateTool(tool.id, rating);
       setUserRating(rating);
       setRatingMessage('Rating saved successfully!');
       router.refresh();
-    } catch (err) {
-      console.error('Error saving rating:', err);
-      setRatingMessage('Failed to save rating.');
+    } catch (err: unknown) {
+      const error = err as Error;
+      console.error('Error saving rating:', error);
+      if (error.message.includes('Unauthorized') || error.message.includes('Session expired')) {
+        setRatingMessage('Session expired. Please log in again.');
+      } else {
+        setRatingMessage('Failed to save rating.');
+      }
     } finally {
       setLoadingRate(false);
     }
