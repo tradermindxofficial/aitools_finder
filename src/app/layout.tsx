@@ -49,39 +49,23 @@ export default async function RootLayout({
         <header className="sticky top-0 z-40 w-full border-b border-border glass bg-opacity-70">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <Link href="/tools" className="flex items-center gap-2 font-bold text-xl tracking-tight group">
-              <div className="logo-icon shrink-0">
-                <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
-                  {/* Define gradient */}
-                  <defs>
-                    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#FF6B35" stopOpacity={1} />
-                      <stop offset="100%" stopColor="#FF8C42" stopOpacity={1} />
-                    </linearGradient>
-                  </defs>
+              <div className="logo-icon shrink-0 w-[50px] h-[50px] md:w-[70px] md:h-[70px]">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                  {/* Background circle */}
+                  <circle cx="50" cy="50" r="48" fill="#1F2937" stroke="#FF6B35" strokeWidth="3"/>
                   
-                  {/* Code Bracket */}
-                  <path d="M 60 80 L 50 120 L 60 160" stroke="#FF6B35" strokeWidth="6" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M 120 80 L 130 120 L 120 160" stroke="#FF6B35" strokeWidth="6" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                  <line x1="65" y1="120" x2="115" y2="120" stroke="#FF6B35" strokeWidth="5" strokeLinecap="round"/>
+                  {/* Code brackets - thick and bold */}
+                  <path d="M 30 30 L 18 50 L 30 70" stroke="#FF6B35" strokeWidth="7" 
+                        fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M 55 30 L 67 50 L 55 70" stroke="#FF6B35" strokeWidth="7" 
+                        fill="none" strokeLinecap="round" strokeLinejoin="round"/>
                   
-                  {/* Brain Circuit */}
-                  <circle cx="150" cy="100" r="35" stroke="white" strokeWidth="4" fill="none"/>
-                  <circle cx="165" cy="90" r="5" fill="white"/>
-                  <circle cx="170" cy="110" r="5" fill="white"/>
-                  <circle cx="155" cy="125" r="5" fill="white"/>
-                  <circle cx="140" cy="115" r="5" fill="white"/>
+                  {/* AI dot in center */}
+                  <circle cx="42" cy="50" r="5" fill="white"/>
                   
-                  {/* Brain connections */}
-                  <line x1="165" y1="90" x2="170" y2="110" stroke="white" strokeWidth="2.5"/>
-                  <line x1="170" y1="110" x2="155" y2="125" stroke="white" strokeWidth="2.5"/>
-                  <line x1="155" y1="125" x2="140" y2="115" stroke="white" strokeWidth="2.5"/>
-                  <line x1="140" y1="115" x2="150" y2="100" stroke="white" strokeWidth="2.5"/>
-                  
-                  {/* Corner circles (tech aesthetic) */}
-                  <circle cx="65" cy="75" r="4" fill="#FF6B35"/>
-                  <circle cx="185" cy="95" r="4" fill="#FF6B35"/>
-                  <circle cx="70" cy="165" r="4" fill="#FF6B35"/>
-                  <circle cx="180" cy="140" r="4" fill="#FF6B35"/>
+                  {/* Small orange dot */}
+                  <circle cx="80" cy="25" r="6" fill="#FF6B35"/>
+                  <circle cx="78" cy="27" r="3" fill="white"/>
                 </svg>
               </div>
               <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
