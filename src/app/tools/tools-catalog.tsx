@@ -38,10 +38,41 @@ export default function ToolsCatalog({
   const [sortBy, setSortBy] = useState<'rating' | 'name'>('rating');
   const [loadingFav, setLoadingFav] = useState<string | null>(null);
 
-  // Extract unique categories for filter tabs
+  // Extract unique categories for filter tabs in the requested order
   const categories = useMemo(() => {
-    const cats = new Set(initialTools.map(t => t.category));
-    return ['All', ...Array.from(cats)];
+    const predefinedOrder = [
+      'Content Creating',
+      'Video Editing',
+      'Photo Editing',
+      'Code Generation',
+      'Code Review',
+      'Testing',
+      'Documentation',
+      'Code Quality',
+      'DevOps',
+      'Backend',
+      'Terminal',
+    ];
+
+    const toolCategories = new Set(initialTools.map((t) => t.category));
+    const orderedCats: string[] = [];
+
+    // Add predefined categories in order
+    predefinedOrder.forEach((cat) => {
+      orderedCats.push(cat);
+    });
+
+    // Add any other categories from the tool list that are not in the predefined list
+    toolCategories.forEach((cat) => {
+      if (!orderedCats.includes(cat)) {
+        orderedCats.push(cat);
+      }
+    });
+
+    // Add 'All' at the end as requested
+    orderedCats.push('All');
+
+    return orderedCats;
   }, [initialTools]);
 
   // Handle favorite toggling
