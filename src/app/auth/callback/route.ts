@@ -10,7 +10,11 @@ export async function GET(request: Request) {
     const supabase = await createClient();
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
-      return NextResponse.redirect(`${origin}${next}`);
+      // Mark custom email verification as verified
+      await supabase.auth.updateUser({
+        data: { is_verified: true }
+      });
+      return NextResponse.redirect(`${origin}${next}?verified=true`);
     }
   }
 

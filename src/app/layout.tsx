@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { createClient } from '@/utils/supabase/server';
 import { signout } from '@/app/auth/actions';
 import { Compass, BookOpen, Star, User, LogOut, Code } from 'lucide-react';
+import VerificationBanner from '@/app/verification-banner';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -131,6 +132,10 @@ export default async function RootLayout({
             </div>
           </div>
         </header>
+
+        {user && user.user_metadata?.is_verified !== true && (
+          <VerificationBanner email={user.email || ''} />
+        )}
 
         <main className="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
           {children}

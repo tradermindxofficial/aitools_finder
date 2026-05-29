@@ -57,11 +57,14 @@ export default async function DashboardPage() {
     }
   }
 
+  const isVerified = user.user_metadata?.is_verified === true;
+
   return (
     <DashboardView
       userEmail={user.email || ''}
       initialSubscriptionStatus={subscriptionStatus}
       initialSavedTools={savedTools}
+      initialIsVerified={isVerified}
     />
   );
 }

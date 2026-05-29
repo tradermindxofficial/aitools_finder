@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Star, Bookmark, ExternalLink, ShieldAlert, Sparkles, AlertCircle, CreditCard, ChevronRight } from 'lucide-react';
+import { Star, Bookmark, ExternalLink, ShieldAlert, Sparkles, AlertCircle, CreditCard, ChevronRight, Check, Loader2 } from 'lucide-react';
 import { createClient } from '@/utils/supabase/client';
+import { resendVerificationEmail } from '@/app/auth/actions';
 
 export interface SavedTool {
   id: string;
@@ -21,18 +22,40 @@ interface DashboardViewProps {
   userEmail: string;
   initialSubscriptionStatus: string;
   initialSavedTools: SavedTool[];
+  initialIsVerified: boolean;
 }
 
 export default function DashboardView({
   userEmail,
   initialSubscriptionStatus,
   initialSavedTools,
+  initialIsVerified,
 }: DashboardViewProps) {
   const router = useRouter();
   const [subStatus, setSubStatus] = useState(initialSubscriptionStatus);
   const [savedTools, setSavedTools] = useState<SavedTool[]>(initialSavedTools);
   const [loadingSub, setLoadingSub] = useState(false);
   const [loadingUnfav, setLoadingUnfav] = useState<string | null>(null);
+  
+  // Custom verification states
+  const [resendLoading, setResendLoading] = useState(false);
+  const [resendSuccess, setResendSuccess] = useState(false);
+  const [resendError, setResendError] = useState('');
+
+  const handleResendEmail = async () => {
+    setResendLoading(true);
+    setResendError('');
+    setResendSuccess(false);
+    try {
+      await resendVerificationEmail(userEmail);
+      setResendSuccess(true);
+    } catch (err: unknown) {
+      console.error(err);
+      setResendError('Failed to resend. Please try again.');
+    } finally {
+      setResendLoading(false);
+    }
+  };
 
   // Handle toggling favorites
   const handleRemoveFavorite = async (toolId: string) => {
@@ -128,6 +151,62 @@ export default function DashboardView({
                       <Sparkles className="w-3 h-3 fill-current" />
                       Pro Access Active
                     </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Email Verification status */}
+              <div>
+                <label className="block text-[10px] font-bold uppercase tracking-wider text-muted-foreground mb-1.5">
+                  Email Verification
+                </label>
+                <div className="bg-slate-950/40 p-3 rounded-lg border border-border space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
+                      initialIsVerified 
+                        ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' 
+                        : 'bg-amber-500/10 text-amber-500 border border-amber-500/20'
+                    }`}>
+                      {initialIsVerified ? 'Verified' : 'Unverified'}
+                    </span>
+                    
+                    {initialIsVerified && (
+                      <span className="text-[10px] text-emerald-400 font-semibold flex items-center gap-1">
+                        <Check className="w-3 h-3" />
+                        Status Confirmed
+                      </span>
+                    )}
+                  </div>
+                  
+                  {!initialIsVerified && (
+                    <div className="pt-1.5 border-t border-border/30">
+                      {resendSuccess ? (
+                        <p className="text-[9px] text-emerald-400 font-semibold flex items-center gap-1">
+                          <Check className="w-3 h-3" />
+                          Verification link sent!
+                        </p>
+                      ) : (
+                        <div className="space-y-1">
+                          <button
+                            onClick={handleResendEmail}
+                            disabled={resendLoading}
+                            className="w-full py-1.5 px-3 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-700 text-slate-950 rounded-lg text-[9px] font-bold transition-all cursor-pointer flex items-center justify-center gap-1"
+                          >
+                            {resendLoading ? (
+                              <>
+                                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                                Sending Link...
+                              </>
+                            ) : (
+                              'Resend Verification Link'
+                            )}
+                          </button>
+                          {resendError && (
+                            <p className="text-[9px] text-rose-400 font-semibold">{resendError}</p>
+                          )}
+                        </div>
+                      )}
+                    </div>
                   )}
                 </div>
               </div>
