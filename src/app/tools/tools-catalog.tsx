@@ -46,6 +46,7 @@ export default function ToolsCatalog({
       'Video Editing',
       'Photo Editing',
       'Code Generation',
+      'Audio',
       'Code Review',
       'Testing',
       'Documentation',
@@ -146,7 +147,7 @@ export default function ToolsCatalog({
             Find the Best <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">AI Tools</span> for Developers
           </h1>
           <p className="text-slate-400 text-sm md:text-base leading-relaxed">
-            Discover 75+ highly-curated AI tools for developers — organized by workflow, rated by the community. Save your favorites, rate products, and access full reviews.
+            Discover 90+ highly-curated AI tools for developers — organized by workflow, rated by the community. Save your favorites, rate products, and access full reviews.
           </p>
         </div>
       </div>
